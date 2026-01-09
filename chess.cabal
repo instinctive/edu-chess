@@ -1,0 +1,71 @@
+cabal-version: 3.0
+name: chess
+version: 0.1.0.0
+
+common shared -- {{{
+  mixins:
+    , base hiding (Prelude)
+    , base-prelude (BasePrelude as Prelude)
+  default-language: GHC2021
+  include-dirs: include
+  default-extensions:
+    , BlockArguments
+    , CPP
+    , DataKinds
+    , LambdaCase
+    , MultiWayIf
+    , RecordWildCards
+    , ViewPatterns
+  -- ghc-options: -pgmL markdown-unlit
+  ghc-options: -O2
+  build-depends: base, base-prelude
+    , MonadRandom
+    , ansi-terminal
+    , array
+    , containers
+    , extra
+    , lens
+    , linear
+    , llrbtree
+    , mtl
+    , pcre-heavy
+    , random
+    , random-shuffle
+    , split
+    , tagged
+    , text
+    , unix
+
+-- }}}
+
+library
+  import: shared
+  hs-source-dirs: src/chess
+  exposed-modules: Chess
+  build-depends: chess:chess-internal
+  -- other-modules:
+  --   , Color, Sq, Piece, Board, Game, Moves, Zobrist
+  --   , Internal
+
+library chess-players
+  import: shared
+  hs-source-dirs: src/players
+  exposed-modules: Players
+  build-depends: chess:chess
+  -- other-modules:
+  --   , Color, Sq, Piece, Board, Game, Moves, Zobrist
+  --   , Internal
+  --   , Chess
+
+library chess-internal
+  import: shared
+  hs-source-dirs: src/internal
+  exposed-modules: Internal
+  other-modules:
+    , Color, Sq, Piece, Board, Game, Moves, Zobrist
+
+executable chess
+  import: shared
+  main-is: chess.hs
+  hs-source-dirs: exe
+  build-depends: chess-players
