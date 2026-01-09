@@ -10,7 +10,7 @@ $ nix-shell
 $ cabal run -v0 chess -- human random
 ```
 
-![Screenshot of the chess program](https://github.com/instinctive/edu-chess/assets/blob/main/chess.png)
+![Screenshot of the chess program](/assets/chess.png)
 
 ## TODO
 
