@@ -43,19 +43,12 @@ library
   hs-source-dirs: src/chess
   exposed-modules: Chess
   build-depends: chess:chess-internal
-  -- other-modules:
-  --   , Color, Sq, Piece, Board, Game, Moves, Zobrist
-  --   , Internal
 
 library chess-players
   import: shared
   hs-source-dirs: src/players
   exposed-modules: Players
   build-depends: chess:chess
-  -- other-modules:
-  --   , Color, Sq, Piece, Board, Game, Moves, Zobrist
-  --   , Internal
-  --   , Chess
 
 library chess-internal
   import: shared
