@@ -16,4 +16,5 @@ $ cabal run -v0 chess -- human random
 
 - Zobrist hashing does not include castling rights,
   en passant square, nor whose turn it is.
+- Bring order to the chaos.
 - Make an AI player =D
