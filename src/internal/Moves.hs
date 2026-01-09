@@ -125,22 +125,6 @@ setStatus game@Game{..} = game
         (concatMap getPieceMoves $ gamePieces game)
         <> kCastleMove <> qCastleMove
 
--- allMoves game@Game{..}
---     | dead             = Left Dead
---     | move50           = Left Move50
---     | repetition       = Left Repetition
---     | not (null moves) = Right moves
---     | kingInCheck game = Left (Win $ oppColor $ _gameTurn game)
---     | otherwise        = Left Stalemate
---   where
---     dead = null tt || tt == [Bishop] || tt == [Knight] where
---         tt = gamePieces game & map (_pieceType.snd) & filter (/=King)
---     move50 = length _gameHistory >= 50
---     repetition = length (filter (==_gameZobrist) _gameHistory) >= 3
---     moves = let ?game = game in
---         (concatMap getPieceMoves $ gamePieces game)
---         <> kCastleMove <> qCastleMove
-
 setNextTurn
     = setStatus
     . over gameTurn oppColor
